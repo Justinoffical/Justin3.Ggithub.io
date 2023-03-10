@@ -19,10 +19,13 @@ var snakeBody = [];
 var foodX;
 var foodY;
 
+// score 
 var score = 0;
 
+// Audio 
 const eatsound = new Audio("mp3/eat.mp3")
 const music = new Audio("mp3/RPG.mp3")
+music.volume = 0.5
 
 var gameOver = false;
 
@@ -34,21 +37,22 @@ window.onload = function() {
 
     placeFood();
     document.addEventListener("keyup",changeDirection);
-    drawScore();
+    
     // update();
     setInterval(update, 1000/10); //100 milliseconds
 }
+// stop when game over
 function update() {
     if (gameOver) {
         return;
     }
-
+//board color
     context.fillStyle="black"
     context.fillRect(0, 0, board.width, board.height);
-
+//food color
     context.fillStyle="red"
     context.fillRect(foodX, foodY, blockSize, blockSize);
-
+//score color
     context.fillStyle= "white"
     context.font = "15px Verdana"
     context.fillText("score " + score,420,17, board.width, board.height)
@@ -100,7 +104,7 @@ function update() {
         }
     }
 }
-
+//controller
 function changeDirection(e) {
     if (e.code == "ArrowUp" && velocityY != 1) {
         velocityX = 0;
@@ -130,6 +134,5 @@ function placeFood() {
     foodY = Math.floor(Math.random() * rows) * blockSize;
 }
 
-// score 
-function drawScore() {
-}
+
+
